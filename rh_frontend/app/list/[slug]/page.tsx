@@ -1,4 +1,4 @@
-import BackHomeButton from "@/components/BackHomeButton";
+import BackHomeButton from "@/components/LogOutButton";
 import DisplayRestaurants from "@/components/DisplayRestaurant";
 import {
   createClientComponentClient,
@@ -7,26 +7,8 @@ import {
 import { toast, ToastContainer } from "react-toastify";
 import { cookies } from "next/headers";
 import GetRandomRestaurant from "@/components/GetRandomRestaurant";
-
-const get_random_restaurant = async (slug: string) => {
-  const supabase = createClientComponentClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  const { error, data } = await supabase.rpc("get_rand_restaurant", {
-    given_list: slug,
-    user_email: user ? user.email : "",
-  });
-  console.log(data);
-  if (data == null) {
-    error
-      ? toast(error.message)
-      : toast("Error getting random restaurant! Database might be down.");
-    return "Get Random Restaurant";
-  } else {
-    return JSON.stringify(data);
-  }
-};
+import { redirect } from "next/navigation";
+import LogOutButton from "@/components/LogOutButton";
 
 export default async function Page({ params }: { params: { slug: string } }) {
   // fetch all restaurants in list
@@ -34,6 +16,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const cookieStore = cookies();
   const supabase = createServerComponentClient({ cookies: () => cookieStore });
   const { data: session } = await supabase.auth.getSession();
+  if (!session?.session?.user) {
+    redirect("/");
+  }
   return (
     <>
       <ToastContainer
@@ -48,15 +33,15 @@ export default async function Page({ params }: { params: { slug: string } }) {
         pauseOnHover
         theme="light"
       />
+      <div>List Name: {params.slug}</div>
       <div>
-        <BackHomeButton />
+        <LogOutButton />
 
         <DisplayRestaurants
           slug={params.slug}
           supabase_session={session.session}
         />
         <GetRandomRestaurant slug={params.slug} />
-        <div>My Post: {params.slug}</div>
       </div>
     </>
   );

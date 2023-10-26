@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 
-export default function BackHomeButton() {
+export default function LogOutButton() {
   return (
     <form action="/auth/sign-out" method="post">
       <button

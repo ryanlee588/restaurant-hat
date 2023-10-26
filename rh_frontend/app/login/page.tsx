@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Messages from "./messages";
-import BackHomeButton from "@/components/BackHomeButton";
+import BackHomeButton from "@/components/LogOutButton";
 
 export default function Login() {
   return (
