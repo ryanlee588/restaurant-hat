@@ -1,14 +1,24 @@
 "use client";
 
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import {
+  Session,
+  SupabaseClient,
+  User,
+  createClientComponentClient,
+} from "@supabase/auth-helpers-nextjs";
+import { useRouter } from "next/navigation";
 import { SetStateAction, useState } from "react";
 
-export default async function ListDirectory() {
+interface ListDirectoryProp {
+  supabase_session: Session | null;
+}
+
+export default function ListDirectory({ supabase_session }: ListDirectoryProp) {
   const [listName, setListName] = useState("");
-  const supabase = createClientComponentClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+
+  const user = supabase_session?.user;
+
+  const router = useRouter();
 
   const handleInputChange = (e: {
     target: { value: SetStateAction<string> };
@@ -29,6 +39,13 @@ export default async function ListDirectory() {
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-black"
         />
       </div>
+      <button
+        onClick={() => {
+          router.push(`/list/${listName}`);
+        }}
+      >
+        View List (New List will be created if it does not exist.)
+      </button>
     </div>
   );
 }

@@ -1,9 +1,12 @@
-"use client";
 import BackHomeButton from "@/components/BackHomeButton";
 import DisplayRestaurants from "@/components/DisplayRestaurant";
-import { useState } from "react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import {
+  createClientComponentClient,
+  createServerComponentClient,
+} from "@supabase/auth-helpers-nextjs";
 import { toast, ToastContainer } from "react-toastify";
+import { cookies } from "next/headers";
+import GetRandomRestaurant from "@/components/GetRandomRestaurant";
 
 const get_random_restaurant = async (slug: string) => {
   const supabase = createClientComponentClient();
@@ -25,15 +28,14 @@ const get_random_restaurant = async (slug: string) => {
   }
 };
 
-export default function Page({ params }: { params: { slug: string } }) {
+export default async function Page({ params }: { params: { slug: string } }) {
   // fetch all restaurants in list
   // return on page
-  const [restaurantPick, setRestaurantPick] = useState<string>(
-    "Get Random Restaurant"
-  );
+  const cookieStore = cookies();
+  const supabase = createServerComponentClient({ cookies: () => cookieStore });
+  const { data: session } = await supabase.auth.getSession();
   return (
-    <div>
-      <BackHomeButton />
+    <>
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -46,17 +48,16 @@ export default function Page({ params }: { params: { slug: string } }) {
         pauseOnHover
         theme="light"
       />
-      <DisplayRestaurants slug={params.slug} />
-      <button
-        onClick={() =>
-          get_random_restaurant(params.slug).then((pick) =>
-            setRestaurantPick(pick)
-          )
-        }
-      >
-        {restaurantPick}
-      </button>
-      <div>My Post: {params.slug}</div>
-    </div>
+      <div>
+        <BackHomeButton />
+
+        <DisplayRestaurants
+          slug={params.slug}
+          supabase_session={session.session}
+        />
+        <GetRandomRestaurant slug={params.slug} />
+        <div>My Post: {params.slug}</div>
+      </div>
+    </>
   );
 }

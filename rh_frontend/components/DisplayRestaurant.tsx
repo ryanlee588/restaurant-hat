@@ -1,15 +1,36 @@
-import { createClient } from "@/utils/supabase/client";
+"use client";
+import {
+  Session,
+  createClientComponentClient,
+} from "@supabase/auth-helpers-nextjs";
 import { useEffect, useState } from "react";
 
 interface pageProps {
   slug: string;
+  supabase_session: Session | null;
 }
 
-export default function DisplayRestaurants({ slug }: pageProps) {
-  const [restaurants, setRestaurants] = useState<any[] | null>(null);
-  const supabase = createClient();
+export default function DisplayRestaurants({
+  slug,
+  supabase_session,
+}: pageProps) {
+  const [restaurants, setRestaurants] = useState<any[] | String | null>(null);
+  const supabase = createClientComponentClient();
 
   useEffect(() => {
+    const checkListExists = async () => {
+      const { error, data } = await supabase
+        .from("lists")
+        .select()
+        .eq("name", slug);
+      if (error) {
+        console.error("Error");
+        return false;
+      } else {
+        return data ? data.length > 0 : false;
+      }
+    };
+
     const checkListStatus = async () => {
       const { error, data } = await supabase
         .from("lists")
@@ -37,12 +58,22 @@ export default function DisplayRestaurants({ slug }: pageProps) {
     };
 
     const checkAndGet = async () => {
+      const listExists = await checkListExists();
+      if (!listExists) {
+        const { error } = await supabase.from("lists").insert({
+          name: slug,
+          open: true,
+          owner: supabase_session?.user.email,
+        });
+      }
       const list_status_local = await checkListStatus();
-      console.log(list_status_local);
-      if (list_status_local == true) {
+      //   console.log(list_status_local);
+      if (list_status_local) {
         getRestaurants();
       } else {
-        setRestaurants(null);
+        setRestaurants(
+          "List is closed! Create a new list to get a restaurant pick."
+        );
       }
     };
     checkAndGet();
