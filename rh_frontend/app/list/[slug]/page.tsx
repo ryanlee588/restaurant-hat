@@ -1,14 +1,12 @@
-import BackHomeButton from "@/components/LogOutButton";
 import DisplayRestaurants from "@/components/DisplayRestaurant";
-import {
-  createClientComponentClient,
-  createServerComponentClient,
-} from "@supabase/auth-helpers-nextjs";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { toast, ToastContainer } from "react-toastify";
 import { cookies } from "next/headers";
 import GetRandomRestaurant from "@/components/GetRandomRestaurant";
 import { redirect } from "next/navigation";
 import LogOutButton from "@/components/LogOutButton";
+import BackButton from "@/components/BackButton";
+import InsertRestaurantButton from "@/components/InsertRestaurantButton";
 
 export default async function Page({ params }: { params: { slug: string } }) {
   // fetch all restaurants in list
@@ -19,6 +17,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   if (!session?.session?.user) {
     redirect("/");
   }
+  // Add back button to list directory
   return (
     <>
       <ToastContainer
@@ -35,9 +34,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
       />
       <div>List Name: {params.slug}</div>
       <div>
+        <BackButton />
         <LogOutButton />
-
         <DisplayRestaurants
+          slug={params.slug}
+          supabase_session={session.session}
+        />
+        <InsertRestaurantButton
           slug={params.slug}
           supabase_session={session.session}
         />
