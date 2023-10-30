@@ -46,7 +46,7 @@ export default function ListDirectory({ supabase_session }: ListDirectoryProp) {
   };
 
   return (
-    <div className="flex-1 w-full flex top-16 flex-col gap-4 px-4 py-4 items-center text-sm md:text-sm lg:text-md">
+    <div className="flex-1 w-full flex top-16 flex-col gap-4 items-center text-sm md:text-sm lg:text-md">
       <input
         type="text"
         name="list_name"
