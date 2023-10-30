@@ -4,7 +4,7 @@ import {
   createClientComponentClient,
 } from "@supabase/auth-helpers-nextjs";
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { useToast } from "@/components/ui/use-toast";
 
 interface pageProps {
   slug: string;
@@ -17,6 +17,7 @@ export default function DisplayRestaurants({
 }: pageProps) {
   const [restaurants, setRestaurants] = useState<any[] | String | null>([]);
   const supabase = createClientComponentClient();
+  const { toast } = useToast();
 
   useEffect(() => {
     const checkListExists = async () => {
@@ -58,9 +59,10 @@ export default function DisplayRestaurants({
           // toast("Error creating list. Please retry!");
         } else {
           console.log("no error");
-          toast(
-            `List with name ${slug} was not found. List with name ${slug} created succesfully!`
-          );
+          toast({
+            title: "List not found",
+            description: `List with name ${slug} was not found. List with name ${slug} created succesfully!`,
+          });
         }
       }
       await getRestaurants();

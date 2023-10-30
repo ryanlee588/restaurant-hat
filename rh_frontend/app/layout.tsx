@@ -1,4 +1,4 @@
-import { ToastContainer } from "react-toastify";
+import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 import LogOutButton from "@/components/LogOutButton";
 
@@ -14,23 +14,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-background text-foreground">
-        <main className="flex flex-col items-center min-h-screen justify-center">
-          <ToastContainer
-            position="top-right"
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          />
-          <LogOutButton />
-          <div className="">Welcome to Restaurant Hat!</div>
-          <div className="">{children}</div>
+      <body
+        style={{ backgroundColor: "black", color: "white" }}
+        className="bg-background text-foreground"
+      >
+        <main className="flex flex-col text-sm md:text-base lg:text-large items-center min-h-screen justify-center gap-4">
+          <div className="pb-16">
+            <LogOutButton />
+          </div>
+          <div className="text-sm md:text-base lg:text-large">{children}</div>
+          <Toaster />
         </main>
       </body>
     </html>

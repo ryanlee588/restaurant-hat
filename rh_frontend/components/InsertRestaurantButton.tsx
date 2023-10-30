@@ -5,7 +5,7 @@ import {
   createClientComponentClient,
 } from "@supabase/auth-helpers-nextjs";
 import { SetStateAction, useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { useToast } from "@/components/ui/use-toast";
 
 interface insertRestaurantProps {
   slug: string;
@@ -26,6 +26,7 @@ export default function InsertRestaurantButton({
 
   const user_email = supabase_session?.user.email;
   const supabase = createClientComponentClient();
+  const { toast } = useToast();
 
   const checkListEmpty = async (list: string) => {
     const { error, data } = await supabase
@@ -68,7 +69,10 @@ export default function InsertRestaurantButton({
       });
       if (error) {
         console.log("Error adding restaurant to list:", error);
-        toast("Error adding restaurant to list! Please try again.");
+        toast({
+          title: "Failed to add restaurant to list",
+          description: "Database error. Please try again!",
+        });
       } else {
         if (listEmpty) {
           const { error } = await supabase
@@ -79,12 +83,16 @@ export default function InsertRestaurantButton({
             console.log("Error updating list owner", error);
           }
         }
-        toast(
-          "Successfully added restaurant to list! Refresh to see updated list."
-        );
+        toast({
+          title: "Successfully added restaurant to list",
+          description: "Refresh to see updated list",
+        });
       }
     } else {
-      toast("List is closed! Unable to add anymore restaurants.");
+      toast({
+        title: "Failed to add restaurant to list",
+        description: "List is closed! Unable to add anymore restaurants.",
+      });
     }
     setRestaurant("");
   };
@@ -101,6 +109,7 @@ export default function InsertRestaurantButton({
         className="mt-1 block w-full px-4 py-2 text-center rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-black"
       />
       <button
+        style={{ color: "white" }}
         type="submit"
         className="bg-green-700 border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2 w-full"
         onClick={() =>

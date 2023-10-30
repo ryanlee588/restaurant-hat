@@ -8,7 +8,8 @@ import {
 } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import { SetStateAction, useState } from "react";
-import { toast } from "react-toastify";
+import { useToast } from "@/components/ui/use-toast";
+import { Button } from "./ui/button";
 
 interface ListDirectoryProp {
   supabase_session: Session | null;
@@ -23,6 +24,8 @@ export default function ListDirectory({ supabase_session }: ListDirectoryProp) {
 
   const router = useRouter();
 
+  const { toast } = useToast();
+
   const handleInputChange = (e: {
     target: { value: SetStateAction<string> };
   }) => {
@@ -35,15 +38,15 @@ export default function ListDirectory({ supabase_session }: ListDirectoryProp) {
       list: list,
     });
     if (error) {
-      toast(error.message);
+      toast({ title: "Error deleting list", description: error.message });
     } else {
-      toast(`Successfully deleted list "${list}"!`);
+      toast({ title: `Successfully deleted list ${list}!` });
     }
     setListName("");
   };
 
   return (
-    <div className="flex-1 w-full flex top-16 flex-col gap-4 items-center">
+    <div className="flex-1 w-full flex top-16 flex-col gap-4 px-4 py-4 items-center">
       <input
         type="text"
         name="list_name"
@@ -54,22 +57,33 @@ export default function ListDirectory({ supabase_session }: ListDirectoryProp) {
         className="mt-1 block w-full px-4 py-2 text-center rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-black"
       />
 
-      <button
-        className="bg-gray-700 border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2 w-full"
+      <Button
+        className="bg-gray-700 w-full"
         onClick={() => {
-          listName != "" ? router.push(`/list/${listName}`) : null;
+          listName != ""
+            ? router.push(`/list/${listName}`)
+            : toast({
+                title: "Error viewing List",
+                description: "List name cannot be empty",
+              });
         }}
       >
         View List (New List will be created if it does not exist.)
-      </button>
-      <button
-        className="bg-red-700 border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2 w-full"
+      </Button>
+      <Button
+        variant="destructive"
+        className="w-full"
         onClick={() => {
-          listName != "" ? deleteList(listName) : null;
+          listName != ""
+            ? deleteList(listName)
+            : toast({
+                title: "Error deleting List",
+                description: "List name cannot be empty",
+              });
         }}
       >
         Delete List
-      </button>
+      </Button>
     </div>
   );
 }
