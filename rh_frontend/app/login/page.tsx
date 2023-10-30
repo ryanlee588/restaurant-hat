@@ -1,8 +1,19 @@
-import Link from "next/link";
-import Messages from "./messages";
-import BackHomeButton from "@/components/LogOutButton";
+// import Link from "next/link";
+// import Messages from "./messages";
+import { useSearchParams } from "next/navigation";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function Login() {
+  const searchParams = useSearchParams();
+  const error = searchParams.get("error");
+  const message = searchParams.get("message");
+  const { toast } = useToast();
+  if (error) {
+    toast({ title: "Error", description: error });
+  }
+  if (message) {
+    toast({ title: "Message", description: message });
+  }
   return (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
       <form
@@ -38,7 +49,6 @@ export default function Login() {
         >
           Sign Up
         </button>
-        <Messages />
       </form>
     </div>
   );
