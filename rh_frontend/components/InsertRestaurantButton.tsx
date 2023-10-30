@@ -28,29 +28,52 @@ export default function InsertRestaurantButton({
   const supabase = createClientComponentClient();
   const { toast } = useToast();
 
+  //   const checkListEmpty = async (list: string) => {
+  //     const { error, data } = await supabase
+  //       .from("restaurants")
+  //       .select()
+  //       .eq("list", list);
+  //     if (error) {
+  //       console.error("Error checking if list is empty:", error);
+  //       return false;
+  //     } else {
+  //       return data ? data.length == 0 : false;
+  //     }
+  //   };
+
+  //   const checkListStatus = async (list: string) => {
+  //     const { error, data } = await supabase
+  //       .from("lists")
+  //       .select("open")
+  //       .eq("name", list);
+  //     if (error) {
+  //       console.error("Error checking if list is open:", error);
+  //       return false;
+  //     } else {
+  //       return data ? data[0].open : false;
+  //     }
+  //   };
+
   const checkListEmpty = async (list: string) => {
-    const { error, data } = await supabase
-      .from("restaurants")
-      .select()
-      .eq("list", list);
+    const { data, error } = await supabase.rpc("check_list_empty", {
+      list_name: list,
+    });
     if (error) {
-      console.error("Error checking if list is empty:", error);
       return false;
     } else {
-      return data ? data.length == 0 : false;
+      return data;
     }
   };
 
-  const checkListStatus = async (list: string) => {
-    const { error, data } = await supabase
-      .from("lists")
-      .select("open")
-      .eq("name", list);
+  const checkListOpen = async (list: string) => {
+    const { error, data } = await supabase.rpc("check_list_open", {
+      list_name: list,
+    });
     if (error) {
       console.error("Error checking if list is open:", error);
       return false;
     } else {
-      return data ? data[0].open : false;
+      return data;
     }
   };
 
@@ -60,7 +83,8 @@ export default function InsertRestaurantButton({
     restaurant: string
   ) => {
     const listEmpty = await checkListEmpty(list);
-    const listOpen = await checkListStatus(list);
+    const listOpen = await checkListOpen(list);
+    console.log(listOpen);
     if (listOpen) {
       const { error } = await supabase.from("restaurants").insert({
         list: list,
@@ -123,25 +147,3 @@ export default function InsertRestaurantButton({
     </div>
   );
 }
-
-// function add_restaurant(user_email: string, restaurant: string) {
-//   const supabase = createClientComponentClient();
-//   useEffect(() => {
-//     const add_restaurant_aux = async () => {
-//       const { error } = await supabase.from("restaurants").insert({
-//         list: restaurant,
-//         restaurant: restaurant,
-//         owner: user_email,
-//       });
-//       if (error) {
-//         console.log("Error adding restaurant to list:", error);
-//         toast("Error adding restaurant to list! Please try again.");
-//       } else {
-//         toast(
-//           "Successfully added restaurant to list! Refresh to see updated list."
-//         );
-//       }
-//     };
-//     add_restaurant_aux();
-//   });
-// }

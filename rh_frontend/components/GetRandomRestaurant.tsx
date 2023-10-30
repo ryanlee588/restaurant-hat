@@ -21,15 +21,14 @@ interface GetRandomRestaurantProp {
 const supabase = createClientComponentClient();
 
 const checkListEmpty = async (list: string) => {
-  const { error, data } = await supabase
-    .from("restaurants")
-    .select()
-    .eq("list", list);
+  const { error, data } = await supabase.rpc("check_list_empty", {
+    list_name: list,
+  });
   if (error) {
     console.error("Error checking if list is empty:", error);
     return false;
   } else {
-    return data ? data.length == 0 : false;
+    return data;
   }
 };
 
@@ -39,12 +38,7 @@ const get_random_restaurant = async (toast: any, slug: string) => {
   } = await supabase.auth.getUser();
   const listEmpty = await checkListEmpty(slug);
   if (listEmpty) {
-    toast({
-      title: "Failed to get random restaurant",
-      description:
-        "No restaurants in list! Add Restaurant to get random restaurant.",
-    });
-    return "Get Random Restaurant";
+    return "No restaurants in list! Add Restaurant to get random restaurant.";
   } else {
     const { error, data } = await supabase.rpc("get_rand_restaurant", {
       given_list: slug,
@@ -52,10 +46,7 @@ const get_random_restaurant = async (toast: any, slug: string) => {
     });
     console.log(data);
     if (error) {
-      toast({
-        title: "Failed to get random restaurant",
-        description: error.message,
-      });
+      return "Failed to get random restaurant: " + error.message;
     } else {
       const json_object = JSON.stringify(data);
       return JSON.parse(json_object);
@@ -90,15 +81,8 @@ export default function GetRandomRestaurant({ slug }: GetRandomRestaurantProp) {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Continue</AlertDialogCancel>
-            {/* <AlertDialogAction>Continue</AlertDialogAction> */}
           </AlertDialogFooter>
         </AlertDialogContent>
-        {/* <div
-          style={{ color: "white" }}
-          className="bg-gray-700 border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2 w-full"
-        >
-          Random Restaurant Pick: {restaurantPick}
-        </div> */}
       </AlertDialog>
     </div>
   );

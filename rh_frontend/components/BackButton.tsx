@@ -9,7 +9,6 @@ export default function BackButton() {
       variant="secondary"
       className="absolute left-8 top-8 text-sm md:text-base lg:text-large"
       onClick={() => router.push(`/directory`)}
-      // className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
