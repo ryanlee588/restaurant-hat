@@ -21,7 +21,7 @@ export async function POST(request: Request) {
 
     if (error) {
       return NextResponse.redirect(
-        `${requestUrl.origin}/?error=Sign up failed: Email already in use, pick another email to continue.`,
+        `${requestUrl.origin}?error=Sign up failed: Email already in use, pick another email to continue.`,
         {
           // a 301 status is required to redirect from a POST to a GET route
           status: 301,
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.redirect(
-      `${requestUrl.origin}/?message=Sign up success: Sign in to continue.`,
+      `${requestUrl.origin}?message=Sign up success: Sign in to continue.`,
       {
         // a 301 status is required to redirect from a POST to a GET route
         status: 301,
@@ -38,7 +38,7 @@ export async function POST(request: Request) {
     );
   } else {
     return NextResponse.redirect(
-      `${requestUrl.origin}/?error=Sign up failed: Please enter a valid email. `,
+      `${requestUrl.origin}?error=Sign up failed: Please enter a valid email. `,
       {
         // a 301 status is required to redirect from a POST to a GET route
         status: 301,
