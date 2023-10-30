@@ -4,6 +4,7 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
 import Image from "next/image";
 import icon from "./icon.png";
+import { Button } from "@/components/ui/button";
 
 export default async function Login() {
   const cookieStore = cookies();
@@ -56,18 +57,19 @@ export default async function Login() {
           placeholder="••••••••"
           required
         />
-        <button
+        <Button
           style={{ color: "white" }}
-          className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2"
+          className="rounded-md px-4 py-2 text-foreground mb-2 text-sm md:text-base lg:text-large "
         >
           Sign In
-        </button>
-        <button
+        </Button>
+        <Button
+          style={{ color: "white" }}
           formAction="/auth/sign-up"
-          className="border border-foreground/20 bg-blue-500 rounded-md px-4 py-2 text-foreground mb-2"
+          className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2 text-sm md:text-base lg:text-large "
         >
           Sign Up
-        </button>
+        </Button>
         <Messages />
       </form>
     </div>

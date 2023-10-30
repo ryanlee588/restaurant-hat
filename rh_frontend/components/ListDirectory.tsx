@@ -46,7 +46,7 @@ export default function ListDirectory({ supabase_session }: ListDirectoryProp) {
   };
 
   return (
-    <div className="flex-1 w-full flex top-16 flex-col gap-4 px-4 py-4 items-center">
+    <div className="flex-1 w-full flex top-16 flex-col gap-4 px-4 py-4 items-center text-sm md:text-sm lg:text-md">
       <input
         type="text"
         name="list_name"
@@ -54,11 +54,11 @@ export default function ListDirectory({ supabase_session }: ListDirectoryProp) {
         placeholder="Enter List Name"
         value={listName}
         onChange={handleInputChange}
-        className="mt-1 block w-full px-4 py-2 text-center rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-black"
+        className="mt-1 block w-full md:w-1/2 lg:w-1/2 px-4 py-2 text-center rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-black"
       />
 
       <Button
-        className="bg-gray-700 w-full"
+        className="w-full md:w-1/2 lg:w-1/2 text-sm md:text-sm lg:text-md"
         onClick={() => {
           listName != ""
             ? router.push(`/list/${listName}`)
@@ -68,11 +68,11 @@ export default function ListDirectory({ supabase_session }: ListDirectoryProp) {
               });
         }}
       >
-        View List (New List will be created if it does not exist.)
+        View List (Creates list if it doesn't exist)
       </Button>
       <Button
         variant="destructive"
-        className="w-full"
+        className="w-full md:w-1/2 lg:w-1/2 text-sm md:text-base lg:text-large"
         onClick={() => {
           listName != ""
             ? deleteList(listName)

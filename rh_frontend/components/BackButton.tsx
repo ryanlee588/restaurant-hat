@@ -7,7 +7,7 @@ export default function BackButton() {
   return (
     <Button
       variant="secondary"
-      className="absolute left-8 top-8 text-sm md:text-base lg:text-large"
+      className="absolute left-8 top-8 text-sm md:text-base lg:text-large py-2 px-4 rounded-md no-underline"
       onClick={() => router.push(`/directory`)}
     >
       <svg

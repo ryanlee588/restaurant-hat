@@ -14,8 +14,8 @@ export default async function directory() {
   }
 
   return (
-    <div className="flex-1 w-full flex top-16 flex-col gap-4 items-center">
-      <h2 className="flex flex-col w-full items-center gap-2 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+    <div className="flex-1 w-full flex top-16 flex-col gap-4 items-center text-sm md:text-sm lg:text-md">
+      <h2 className="flex flex-col w-full md:w-1/2 lg:w-1/2 items-center gap-2 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
         <Image
           width="200"
           height="200"

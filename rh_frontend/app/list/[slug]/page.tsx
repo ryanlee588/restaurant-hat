@@ -19,7 +19,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   }
   // Add back button to list directory
   return (
-    <div className="flex flex-col gap-4 items-center justify-center w-full sm:max-w-md gap-2">
+    <div className="flex flex-col gap-4 items-center justify-center w-full gap-2">
       <h2 className="flex flex-col items-center gap-2 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
         <Image
           width="200"

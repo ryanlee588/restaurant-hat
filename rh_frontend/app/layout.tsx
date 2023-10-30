@@ -18,11 +18,13 @@ export default function RootLayout({
         style={{ backgroundColor: "black", color: "white" }}
         className="bg-background text-foreground"
       >
-        <main className="flex flex-col text-sm md:text-base lg:text-large items-center min-h-screen justify-center gap-4">
+        <main className="flex flex-col w-full text-xs md:text-sm lg:text-md items-center min-h-screen justify-center">
           <div className="pb-16">
             <LogOutButton />
           </div>
-          <div className="text-sm md:text-base lg:text-large">{children}</div>
+          <div className="pt-4 items-center text-xs md:text-sm lg:text-md w-full">
+            {children}
+          </div>
           <Toaster />
         </main>
       </body>

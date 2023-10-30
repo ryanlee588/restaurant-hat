@@ -62,9 +62,7 @@ export default function GetRandomRestaurant({ slug }: GetRandomRestaurantProp) {
       <AlertDialog>
         <AlertDialogTrigger asChild>
           <Button
-            variant="secondary"
-            style={{ color: "white" }}
-            className="bg-orange-700 w-full"
+            className="w-full text-sm md:text-base lg:text-large "
             onClick={() =>
               get_random_restaurant(toast, slug).then((pick) =>
                 setRestaurantPick(pick)
