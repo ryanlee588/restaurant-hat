@@ -1,7 +1,7 @@
 import ListDirectory from "@/components/ListDirectory";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import Image from "next/image";
-import rhlogo from "../rhlogo.png";
+import icon from "../icon.png";
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -19,7 +19,7 @@ export default async function directory() {
         <Image
           width="200"
           height="200"
-          src={rhlogo}
+          src={icon}
           alt="Restaurant Hat Logo"
         ></Image>
       </h2>

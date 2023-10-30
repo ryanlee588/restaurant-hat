@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import BackButton from "@/components/BackButton";
 import InsertRestaurantButton from "@/components/InsertRestaurantButton";
 import Image from "next/image";
-import rhlogo from "../../rhlogo.png";
+import icon from "../../icon.png";
 
 export default async function Page({ params }: { params: { slug: string } }) {
   // fetch all restaurants in list
@@ -24,7 +24,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <Image
           width="200"
           height="200"
-          src={rhlogo}
+          src={icon}
           alt="Restaurant Hat Logo"
         ></Image>
       </h2>

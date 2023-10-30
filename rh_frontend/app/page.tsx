@@ -3,7 +3,7 @@ import Messages from "../components/messages";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
 import Image from "next/image";
-import rhlogo from "./rhlogo.png";
+import icon from "./icon.png";
 
 export default async function Login() {
   const cookieStore = cookies();
@@ -18,7 +18,7 @@ export default async function Login() {
         <Image
           width="200"
           height="200"
-          src={rhlogo}
+          src={icon}
           alt="Restaurant Hat Logo"
         ></Image>
         Welcome to Restaurant Hat!
