@@ -90,17 +90,19 @@ export default function InsertRestaurantButton({
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-4 items-center ">
       <input
         type="text"
         name="list_name"
         id="list_name"
+        placeholder="Restaurant to Insert"
         value={restaurant}
         onChange={handleInputChange}
-        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-black"
+        className="mt-1 block w-full px-4 py-2 text-center rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-black"
       />
       <button
         type="submit"
+        className="bg-green-700 border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2 w-full"
         onClick={() =>
           user_email
             ? add_restaurant(slug, user_email, restaurant)

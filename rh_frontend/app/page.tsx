@@ -1,7 +1,15 @@
+import { cookies } from "next/headers";
 import Messages from "./login/messages";
-import BackHomeButton from "@/components/LogOutButton";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { redirect } from "next/navigation";
 
-export default function Login() {
+export default async function Login() {
+  const cookieStore = cookies();
+  const supabase = createServerComponentClient({ cookies: () => cookieStore });
+  const { data: session } = await supabase.auth.getSession();
+  if (session?.session?.user) {
+    redirect("/directory");
+  }
   return (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
       <div>Please Log In to access Restaurant Hat.</div>

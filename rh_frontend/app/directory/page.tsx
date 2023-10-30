@@ -17,8 +17,7 @@ export default async function directory() {
   }
 
   return (
-    <div>
-      <LogOutButton />
+    <div className="flex-1 w-full flex top-16 flex-col gap-20 items-center">
       <ListDirectory supabase_session={session.session} />
     </div>
   );

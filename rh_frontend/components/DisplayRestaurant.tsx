@@ -32,29 +32,16 @@ export default function DisplayRestaurants({
       }
     };
 
-    // const checkListStatus = async () => {
-    //   const { error, data } = await supabase
-    //     .from("lists")
-    //     .select("open")
-    //     .eq("name", slug);
-    //   if (error) {
-    //     console.error("Error checking if list is open:", error);
-    //     return true;
-    //   } else {
-    //     return data ? data[0].open : true;
-    //   }
-    // };
-
     const getRestaurants = async () => {
       const { error, data } = await supabase
         .from("restaurants")
-        .select("restaurant")
+        .select("restaurant, owner")
         .eq("list", slug);
       if (error) {
         console.error("Error getting restaurants:", error);
       } else {
-        const restaurantStrings = data.map((item) => item.restaurant);
-        setRestaurants(restaurantStrings);
+        // const restaurantStrings = data.map((item) => item.restaurant);
+        setRestaurants(data);
       }
     };
 
@@ -81,5 +68,122 @@ export default function DisplayRestaurants({
     checkAndGet();
   }, []);
 
-  return <pre>{JSON.stringify(restaurants, null, 2)}</pre>;
+  return (
+    // <pre>{JSON.stringify(restaurants, null, 2)}</pre>
+    <div className="flex w-full items-center">
+      {RestaurantsTable(slug, restaurants)}
+    </div>
+  );
+}
+
+function RestaurantsTable(slug: String, restaurants: any[] | String | null) {
+  return Array.isArray(restaurants) ? (
+    <table
+      style={{
+        borderCollapse: "collapse",
+        width: "100%",
+        backgroundColor: "#f5f5f5",
+      }}
+    >
+      <thead>
+        <tr>
+          <td
+            colSpan={2}
+            style={{
+              backgroundColor: "#333",
+              color: "white",
+              border: "1px solid #dddddd",
+              padding: "8px",
+              textAlign: "center",
+              fontWeight: "bold",
+            }}
+          >
+            List Name: {slug}
+          </td>
+        </tr>
+        <tr>
+          <th
+            style={{
+              backgroundColor: "#333",
+              color: "white",
+              border: "1px solid #dddddd",
+              padding: "8px",
+            }}
+          >
+            Restaurant Name
+          </th>
+          <th
+            style={{
+              backgroundColor: "#333",
+              color: "white",
+              border: "1px solid #dddddd",
+              padding: "8px",
+            }}
+          >
+            Added By
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {restaurants.map((restaurant, index) => (
+          <tr key={index}>
+            <td
+              style={{
+                border: "1px solid #dddddd",
+                padding: "8px",
+                color: "black",
+                textAlign: "center",
+              }}
+            >
+              {restaurant.restaurant}
+            </td>
+            <td
+              style={{
+                border: "1px solid #dddddd",
+                padding: "8px",
+                color: "black",
+                textAlign: "center",
+              }}
+            >
+              {restaurant.owner}
+            </td>{" "}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  ) : (
+    <table
+      style={{
+        borderCollapse: "collapse",
+        width: "100%",
+        backgroundColor: "#f5f5f5",
+      }}
+    >
+      <thead>
+        <tr>
+          <th
+            style={{
+              backgroundColor: "#333",
+              color: "white",
+              border: "1px solid #dddddd",
+              padding: "8px",
+            }}
+          >
+            Restaurant Name
+          </th>
+          <th
+            style={{
+              backgroundColor: "#333",
+              color: "white",
+              border: "1px solid #dddddd",
+              padding: "8px",
+            }}
+          >
+            Added By
+          </th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  );
 }

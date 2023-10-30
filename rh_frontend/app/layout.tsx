@@ -1,9 +1,10 @@
 import { ToastContainer } from "react-toastify";
 import "./globals.css";
+import LogOutButton from "@/components/LogOutButton";
 
 export const metadata = {
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
+  title: "Restaurant Hat",
+  description: "Your favourite restaurant picker!",
 };
 
 export default function RootLayout({
@@ -14,8 +15,22 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-background text-foreground">
-        <main className="min-h-screen flex flex-col items-center">
-          {children}
+        <main className="flex flex-col items-center min-h-screen justify-center">
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+          <LogOutButton />
+          <div className="">Welcome to Restaurant Hat!</div>
+          <div className="">{children}</div>
         </main>
       </body>
     </html>
