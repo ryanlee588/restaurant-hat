@@ -41,7 +41,6 @@ export default function DisplayRestaurants({
       if (error) {
         console.error("Error getting restaurants:", error);
       } else {
-        // const restaurantStrings = data.map((item) => item.restaurant);
         setRestaurants(data);
       }
     };
@@ -56,7 +55,6 @@ export default function DisplayRestaurants({
         });
         if (error) {
           console.log("Error creating list", error);
-          // toast("Error creating list. Please retry!");
         } else {
           console.log("no error");
           toast({
@@ -71,8 +69,7 @@ export default function DisplayRestaurants({
   }, []);
 
   return (
-    // <pre>{JSON.stringify(restaurants, null, 2)}</pre>
-    <div className="flex w-full items-center">
+    <div className="w-full md:w-1/2 lg:w-1/2">
       {RestaurantsTable(slug, restaurants)}
     </div>
   );

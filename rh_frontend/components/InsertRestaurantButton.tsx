@@ -105,7 +105,7 @@ export default function InsertRestaurantButton({
   };
 
   return (
-    <div className="flex flex-col gap-4 items-center ">
+    <div className="flex flex-col gap-4 items-center w-full md:w-1/2 lg:w-1/2">
       <input
         type="text"
         name="list_name"

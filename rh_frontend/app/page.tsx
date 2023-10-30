@@ -14,8 +14,8 @@ export default async function Login() {
     redirect("/directory");
   }
   return (
-    <div className="flex-1 flex flex-col w-full items-center px-8 sm:max-w-md justify-center gap-2">
-      <h2 className="flex flex-col scroll-m-20 items-center text-center border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+    <div className="flex flex-col w-full items-center justify-center gap-2">
+      <h2 className="flex flex-col w-full md:w-1/2 lg:w-1/2 scroll-m-20 items-center text-center border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
         <Image
           width="200"
           height="200"
@@ -24,11 +24,11 @@ export default async function Login() {
         ></Image>
         Welcome to Restaurant Hat!
       </h2>
-      <h4 className="scroll-m-20 text-center text-l font-semibold tracking-tight">
+      <h4 className="scroll-m-20 w-full md:w-1/2 lg:w-1/2 text-center text-l font-semibold tracking-tight">
         Please log in to start using Restaurant Hat
       </h4>
       <form
-        className="flex-1 flex flex-col w-full justify-center gap-2 text-foreground"
+        className="flex-1 flex flex-col w-full md:w-1/2 lg:w-1/2 gap-2 text-foreground"
         action="/auth/sign-in"
         method="post"
       >
@@ -37,7 +37,7 @@ export default async function Login() {
         </label>
         <input
           style={{ color: "white" }}
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          className="w-fullrounded-md px-4 py-2 bg-inherit border mb-6"
           name="email"
           placeholder="you@example.com"
           required
@@ -51,7 +51,7 @@ export default async function Login() {
         </label>
         <input
           style={{ color: "white" }}
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          className="w-fullrounded-md px-4 py-2 bg-inherit border mb-6"
           type="password"
           name="password"
           placeholder="••••••••"
@@ -59,14 +59,14 @@ export default async function Login() {
         />
         <Button
           style={{ color: "white" }}
-          className="rounded-md px-4 py-2 text-foreground mb-2 text-sm md:text-base lg:text-large "
+          className="w-full text-sm md:text-base lg:text-large"
         >
           Sign In
         </Button>
         <Button
           style={{ color: "white" }}
           formAction="/auth/sign-up"
-          className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2 text-sm md:text-base lg:text-large "
+          className="w-full text-sm md:text-base lg:text-large"
         >
           Sign Up
         </Button>

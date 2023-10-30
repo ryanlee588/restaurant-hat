@@ -58,7 +58,7 @@ export default function GetRandomRestaurant({ slug }: GetRandomRestaurantProp) {
   const [restaurantPick, setRestaurantPick] = useState<string>("");
   const { toast } = useToast();
   return (
-    <div className="flex flex-row w-full gap-4">
+    <div className="w-full md:w-1/2 lg:w-1/2 gap-4">
       <AlertDialog>
         <AlertDialogTrigger asChild>
           <Button

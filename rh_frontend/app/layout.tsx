@@ -22,7 +22,7 @@ export default function RootLayout({
           <div className="pb-16">
             <LogOutButton />
           </div>
-          <div className="pt-4 items-center text-xs md:text-sm lg:text-md w-full">
+          <div className="pt-4 px-8 items-center text-xs md:text-sm lg:text-md w-full">
             {children}
           </div>
           <Toaster />
