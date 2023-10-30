@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import Messages from "./login/messages";
+import Messages from "../components/messages";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
 import Image from "next/image";
