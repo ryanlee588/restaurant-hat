@@ -17,12 +17,12 @@ export default function Messages() {
   return (
     <>
       {error && (
-        <p className="mt-4 p-4 bg-gray-700 text-foreground text-center">
+        <p className="mt-4 p-4 bg-foreground/10 text-white text-center">
           {error}
         </p>
       )}
       {message && (
-        <p className="mt-4 p-4 bg-gray-700 text-foreground text-center">
+        <p className="mt-4 p-4 bg-foreground/10 text-white text-center">
           {message}
         </p>
       )}
