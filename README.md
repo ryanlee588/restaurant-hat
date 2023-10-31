@@ -75,6 +75,8 @@ The main technologies used for this web app are as follows.
 
 - Supabase
 
+  - Interaction with Supabase was mainly used using the Supabase Next.js and javascript libraries. Documentation on interacting with supabase can be found [here](https://supabase.com/docs).
+
   - Authentication
 
     - Helped to handle basic email-password authentication and user management.
@@ -108,7 +110,17 @@ The main technologies used for this web app are as follows.
 
     - Additional Functions (Built upon basic PostgreSQL database functions)
       - `check_list_empty`: Checks if a list is empty.
+        - Input: list_name (text)
+        - Output: bool
       - `check_list_exists`: Checks if a list of a given name has been created.
+        - Input: list_name (text)
+        - Output: bool
       - `check_list_open`: Checks if a list is open.
+        - Input: list_name (text)
+        - Output: bool
       - `delete_list`: Deletes a list if the user requesting it is the owner
+        - Input: list_name (text), user_email (text)
+        - Output: void
       - `get_rand_restaurant`: Gets a random restaurant if the user requesting it is the owner, and closes list.
+        - Input: list_name (text), user_email (text)
+        - Output: text

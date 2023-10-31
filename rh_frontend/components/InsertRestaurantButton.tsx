@@ -4,7 +4,7 @@ import {
   Session,
   createClientComponentClient,
 } from "@supabase/auth-helpers-nextjs";
-import { SetStateAction, useEffect, useState } from "react";
+import { SetStateAction, useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { Button } from "./ui/button";
 

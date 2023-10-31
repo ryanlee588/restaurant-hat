@@ -2,8 +2,6 @@
 
 import {
   Session,
-  SupabaseClient,
-  User,
   createClientComponentClient,
 } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
@@ -34,8 +32,8 @@ export default function ListDirectory({ supabase_session }: ListDirectoryProp) {
 
   const deleteList = async (list: string) => {
     const { error } = await supabase.rpc("delete_list", {
+      list_name: list,
       user_email: user ? user.email : "",
-      list: list,
     });
     if (error) {
       toast({ title: "Error deleting list", description: error.message });

@@ -1,6 +1,6 @@
 "use client";
 import { Session } from "@supabase/auth-helpers-nextjs";
-import { createContext, useState } from "react";
+import { useState } from "react";
 import DisplayRestaurants from "./DisplayRestaurant";
 import InsertRestaurantButton from "./InsertRestaurantButton";
 

@@ -1,11 +1,9 @@
 "use client";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useState } from "react";
-import { useToast } from "@/components/ui/use-toast";
 import { Button } from "./ui/button";
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -32,7 +30,7 @@ const checkListEmpty = async (list: string) => {
   }
 };
 
-const get_random_restaurant = async (toast: any, slug: string) => {
+const get_random_restaurant = async (slug: string) => {
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -41,7 +39,7 @@ const get_random_restaurant = async (toast: any, slug: string) => {
     return "No restaurants in list! Add Restaurant to get random restaurant.";
   } else {
     const { error, data } = await supabase.rpc("get_rand_restaurant", {
-      given_list: slug,
+      list_name: slug,
       user_email: user ? user.email : "",
     });
     console.log(data);
@@ -56,7 +54,6 @@ const get_random_restaurant = async (toast: any, slug: string) => {
 
 export default function GetRandomRestaurant({ slug }: GetRandomRestaurantProp) {
   const [restaurantPick, setRestaurantPick] = useState<string>("");
-  const { toast } = useToast();
   return (
     <div className="w-full md:w-1/2 lg:w-1/2 gap-4">
       <AlertDialog>
@@ -64,7 +61,7 @@ export default function GetRandomRestaurant({ slug }: GetRandomRestaurantProp) {
           <Button
             className="w-full text-sm md:text-base lg:text-large "
             onClick={() =>
-              get_random_restaurant(toast, slug).then((pick) =>
+              get_random_restaurant(slug).then((pick) =>
                 setRestaurantPick(pick)
               )
             }
