@@ -4,8 +4,6 @@ A service that helps you pick a random restaurant from submitted choices. It all
 
 # Requirements
 
-Below are the primary and secondary requirements of Restaurant Hat.
-
 ## Primary Requirements
 
 1. The application has a web page that allows a user to input a restaurant of their choice, which is submitted to a backend service via an API call.
@@ -61,8 +59,6 @@ The following sections lay out the functionalities of each page.
   - This action closes the list.
 
 # Tech Stack
-
-The main technologies used for this web app are as follows.
 
 ## Front End
 
