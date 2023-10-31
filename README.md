@@ -75,7 +75,7 @@ The main technologies used for this web app are as follows.
 
 - Supabase
 
-  - Interaction with Supabase was mainly used using the Supabase Next.js and javascript libraries. Documentation on interacting with supabase can be found [here](https://supabase.com/docs).
+  - Interaction with Supabase was mostly done using the Supabase Next.js and javascript libraries. Documentation on interacting with supabase can be found [here](https://supabase.com/docs).
 
   - Authentication
 
