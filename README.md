@@ -80,37 +80,35 @@ The main technologies used for this web app are as follows.
     - Helped to handle basic email-password authentication and user management.
     - Provided APIs and a UI to interact with authentication and user sessions.
 
-  - Database
+  - Provided a PostgreSQL Database, and APIs and a UI to interact with its tables and functions.
 
-    - Provided a Postgres Database, and APIs and a UI to interact with its tables and functions.
+    - Table schemas
 
-      - Tables
+      - Lists
 
-        - Lists
+      | Column Name   | Type                    |
+      | ------------- | ----------------------- |
+      | id            | Primary Key, Unique     |
+      | created_at    |                         |
+      | name          | Primary Key, Unique     |
+      | open          |                         |
+      | owner         |                         |
+      | ------------- | ----------------------- |
 
-        | Column Name   | Type                    |
-        | ------------- | ----------------------- |
-        | id            | Primary Key, Unique     |
-        | created_at    |                         |
-        | name          | Primary Key, Unique     |
-        | open          |                         |
-        | owner         |                         |
-        | ------------- | ----------------------- |
+      - Restaurants
 
-        - Restaurants
+      | Column Name   | Type                      |
+      | ------------- | ------------------------- |
+      | id            | Primary Key, Unique       |
+      | created_at    |                           |
+      | list          | Foreign Key -> lists.name |
+      | restaurant    |                           |
+      | owner         |                           |
+      | ------------- | -----------------------   |
 
-        | Column Name   | Type                      |
-        | ------------- | ------------------------- |
-        | id            | Primary Key, Unique       |
-        | created_at    |                           |
-        | list          | Foreign Key -> lists.name |
-        | restaurant    |                           |
-        | owner         |                           |
-        | ------------- | -----------------------   |
-
-      - Functions
-        - `check_list_empty`: Checks if a list is empty.
-        - `check_list_exists`: Checks if a list of a given name has been created.
-        - `check_list_open`: Checks if a list is open.
-        - `delete_list`: Deletes a list if the user requesting it is the owner
-        - `get_rand_restaurant`: Gets a random restaurant if the user requesting it is the owner, and closes list.
+    - Additional Functions (Built upon basic PostgreSQL database functions)
+      - `check_list_empty`: Checks if a list is empty.
+      - `check_list_exists`: Checks if a list of a given name has been created.
+      - `check_list_open`: Checks if a list is open.
+      - `delete_list`: Deletes a list if the user requesting it is the owner
+      - `get_rand_restaurant`: Gets a random restaurant if the user requesting it is the owner, and closes list.
