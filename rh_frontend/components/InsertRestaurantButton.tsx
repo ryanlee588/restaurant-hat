@@ -11,11 +11,15 @@ import { Button } from "./ui/button";
 interface insertRestaurantProps {
   slug: string;
   supabase_session: Session | null;
+  restaurantStateChange: any;
+  setRestaurantStateChange: any;
 }
 
 export default function InsertRestaurantButton({
   slug,
   supabase_session,
+  restaurantStateChange,
+  setRestaurantStateChange,
 }: insertRestaurantProps) {
   const [restaurant, setRestaurant] = useState("");
 
@@ -85,7 +89,7 @@ export default function InsertRestaurantButton({
           }
           toast({
             title: "Successfully added restaurant to list",
-            description: "Refresh to see updated list",
+            description: `Added ${restaurant} to list`,
           });
         }
       } else {
@@ -102,6 +106,7 @@ export default function InsertRestaurantButton({
     }
 
     setRestaurant("");
+    setRestaurantStateChange(!restaurantStateChange);
   };
 
   return (

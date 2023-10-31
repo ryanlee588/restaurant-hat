@@ -9,11 +9,13 @@ import { useToast } from "@/components/ui/use-toast";
 interface pageProps {
   slug: string;
   supabase_session: Session | null;
+  restaurantStateChange: any;
 }
 
 export default function DisplayRestaurants({
   slug,
   supabase_session,
+  restaurantStateChange,
 }: pageProps) {
   const [restaurants, setRestaurants] = useState<any[] | String | null>([]);
   const supabase = createClientComponentClient();
@@ -66,7 +68,7 @@ export default function DisplayRestaurants({
       await getRestaurants();
     };
     checkAndGet();
-  }, []);
+  }, [restaurantStateChange]);
 
   return (
     <div className="w-full md:w-1/2 lg:w-1/2">

@@ -1,12 +1,11 @@
-import DisplayRestaurants from "@/components/DisplayRestaurant";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import GetRandomRestaurant from "@/components/GetRandomRestaurant";
 import { redirect } from "next/navigation";
 import BackButton from "@/components/BackButton";
-import InsertRestaurantButton from "@/components/InsertRestaurantButton";
 import Image from "next/image";
 import icon from "../../icon.png";
+import RestaurantManager from "@/components/DispInsRestaurant";
 
 export default async function Page({ params }: { params: { slug: string } }) {
   // fetch all restaurants in list
@@ -30,12 +29,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
             alt="Restaurant Hat Logo"
           ></Image>
         </h2>
+
         <div className="flex flex-col w-full items-center gap-4">
-          <DisplayRestaurants
-            slug={params.slug}
-            supabase_session={session.session}
-          />
-          <InsertRestaurantButton
+          <RestaurantManager
             slug={params.slug}
             supabase_session={session.session}
           />
