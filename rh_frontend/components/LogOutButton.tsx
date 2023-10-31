@@ -8,8 +8,7 @@ export default async function LogOutButton() {
   } = await supabase.auth.getUser();
 
   return user ? (
-    <div className="flex flex-row absolute right-8 top-8 items-center gap-2 text-xs md:text-sm lg:text-md">
-      Hey, {user.email}!
+    <div className="flex flex-col md:flex-row lg:flex-row absolute right-8 top-8 items-end md:items-center lg:items-center gap-2 text-sm md:text-base lg:text-large">
       <form action="/auth/sign-out" method="post">
         <Button
           variant="secondary"
@@ -18,6 +17,7 @@ export default async function LogOutButton() {
           Logout
         </Button>
       </form>
+      Hey, {user.email}!
     </div>
   ) : null;
 }

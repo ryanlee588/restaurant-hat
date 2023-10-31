@@ -16,6 +16,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   if (!session?.session?.user) {
     redirect("/");
   }
+  const slug = decodeURI(params.slug);
   // Add back button to list directory
   return (
     <>
@@ -31,11 +32,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </h2>
 
         <div className="flex flex-col w-full items-center gap-4">
-          <RestaurantManager
-            slug={params.slug}
-            supabase_session={session.session}
-          />
-          <GetRandomRestaurant slug={params.slug} />
+          <RestaurantManager slug={slug} supabase_session={session.session} />
+          <GetRandomRestaurant slug={slug} />
         </div>
       </div>
     </>
