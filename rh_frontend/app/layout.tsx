@@ -20,7 +20,7 @@ export default function RootLayout({
       >
         <Toaster />
         <main className="flex flex-col w-full text-xs md:text-sm lg:text-md gap-4 items-center min-h-screen justify-center">
-          <div className="w-full pb-16">
+          <div className="w-full pb-32">
             <LogOutButton />
           </div>
           <div className="py-4 px-8 items-center text-xs md:text-sm lg:text-md w-full">
