@@ -2,6 +2,8 @@
 
 A service that helps you pick a random restaurant from submitted choices. It allows users to create lists which allow other users to add restaurants to, and generates a random restaurant from the list when requested.
 
+This web app has been deployed using vercel and can be found [here](https://restaurant-hat.vercel.app).
+
 # Requirements
 
 ## Primary Requirements
@@ -60,63 +62,60 @@ The following sections lay out the functionalities of each page.
 
 # Tech Stack
 
-## Front End
+## Front End (Next.js)
 
-- Next.js
-  - Framework used to implement all web page components, providing functionalities such as routing and handingly server/client side rendering.
-  - Typescript programming language.
-  - Used in conjunction with tailwind CSS and shadcn/ui which handled styling of components.
+- Framework used to implement all web page components, providing functionalities such as routing and handingly server/client side rendering.
+- Typescript programming language.
+- Used in conjunction with tailwind CSS and shadcn/ui which handled styling of components.
 
-## Back End
+## Back End (Supabase)
 
-- Supabase
+- Interaction with Supabase was mostly done using the Supabase Next.js and javascript libraries. Documentation on interacting with supabase can be found [here](https://supabase.com/docs).
 
-  - Interaction with Supabase was mostly done using the Supabase Next.js and javascript libraries. Documentation on interacting with supabase can be found [here](https://supabase.com/docs).
+- Authentication
 
-  - Authentication
+  - Helped to handle basic email-password authentication and user management.
+  - Provided APIs and a UI to interact with authentication and user sessions.
 
-    - Helped to handle basic email-password authentication and user management.
-    - Provided APIs and a UI to interact with authentication and user sessions.
+- Provided a PostgreSQL Database, and APIs and a UI to interact with its tables and functions.
 
-  - Provided a PostgreSQL Database, and APIs and a UI to interact with its tables and functions.
+  - Table schemas
 
-    - Table schemas
+    - Lists
 
-      - Lists
+    | Column Name   | Type                    |
+    | ------------- | ----------------------- |
+    | id            | Primary Key, Unique     |
+    | created_at    |                         |
+    | name          | Primary Key, Unique     |
+    | open          |                         |
+    | owner         |                         |
+    | ------------- | ----------------------- |
 
-      | Column Name   | Type                    |
-      | ------------- | ----------------------- |
-      | id            | Primary Key, Unique     |
-      | created_at    |                         |
-      | name          | Primary Key, Unique     |
-      | open          |                         |
-      | owner         |                         |
-      | ------------- | ----------------------- |
+    - Restaurants
 
-      - Restaurants
+    | Column Name   | Type                      |
+    | ------------- | ------------------------- |
+    | id            | Primary Key, Unique       |
+    | created_at    |                           |
+    | list          | Foreign Key -> lists.name |
+    | restaurant    |                           |
+    | owner         |                           |
+    | ------------- | -----------------------   |
 
-      | Column Name   | Type                      |
-      | ------------- | ------------------------- |
-      | id            | Primary Key, Unique       |
-      | created_at    |                           |
-      | list          | Foreign Key -> lists.name |
-      | restaurant    |                           |
-      | owner         |                           |
-      | ------------- | -----------------------   |
-
-    - Additional Functions (Built upon basic PostgreSQL database functions)
-      - `check_list_empty`: Checks if a list is empty.
-        - Input: list_name (text)
-        - Output: bool
-      - `check_list_exists`: Checks if a list of a given name has been created.
-        - Input: list_name (text)
-        - Output: bool
-      - `check_list_open`: Checks if a list is open.
-        - Input: list_name (text)
-        - Output: bool
-      - `delete_list`: Deletes a list if the user requesting it is the owner
-        - Input: list_name (text), user_email (text)
-        - Output: void
-      - `get_rand_restaurant`: Gets a random restaurant if the user requesting it is the owner, and closes list.
-        - Input: list_name (text), user_email (text)
-        - Output: text
+  - Additional Functions (Built upon basic PostgreSQL database functions)
+    - `check_list_empty`: Checks if a list is empty.
+      - Input: list_name (text)
+      - Output: bool
+    - `check_list_exists`: Checks if a list of a given name has been created.
+      - Input: list_name (text)
+      - Output: bool
+    - `check_list_open`: Checks if a list is open.
+      - Input: list_name (text)
+      - Output: bool
+    - `delete_list`: Deletes a list if the user requesting it is the owner
+      - Input: list_name (text), user_email (text)
+      - Output: void
+    - `get_rand_restaurant`: Gets a random restaurant if the user requesting it is the owner, and closes list.
+      - Input: list_name (text), user_email (text)
+      - Output: text
