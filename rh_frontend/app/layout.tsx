@@ -19,10 +19,8 @@ export default function RootLayout({
         className="bg-background text-foreground"
       >
         <Toaster />
-        <main className="flex flex-col w-full text-xs md:text-sm lg:text-md items-center min-h-screen justify-center">
-          <div className="pb-16">
-            <LogOutButton />
-          </div>
+        <main className="flex flex-col w-full text-xs md:text-sm lg:text-md gap-4 items-center min-h-screen justify-center">
+          <LogOutButton />
           <div className="py-4 px-8 items-center text-xs md:text-sm lg:text-md w-full">
             {children}
           </div>
