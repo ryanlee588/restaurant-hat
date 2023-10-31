@@ -30,7 +30,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
             alt="Restaurant Hat Logo"
           ></Image>
         </h2>
-
+        <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+          Share the awesomeness of this list with your pals simply by revealing
+          its name. It's that easy! 📋🍕😋
+        </h3>
         <div className="flex flex-col w-full items-center gap-4">
           <RestaurantManager slug={slug} supabase_session={session.session} />
           <GetRandomRestaurant slug={slug} />

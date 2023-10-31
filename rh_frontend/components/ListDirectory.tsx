@@ -51,7 +51,7 @@ export default function ListDirectory({ supabase_session }: ListDirectoryProp) {
         type="text"
         name="list_name"
         id="list_name"
-        placeholder="Enter List Name"
+        placeholder="Enter Unique List Name"
         value={listName}
         onChange={handleInputChange}
         className="mt-1 block w-full md:w-1/2 lg:w-1/2 px-4 py-2 text-center rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-black"

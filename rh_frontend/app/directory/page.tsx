@@ -23,6 +23,9 @@ export default async function directory() {
           alt="Restaurant Hat Logo"
         ></Image>
       </h2>
+      <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+        Simply go to an existing list (or create a new one) 📋
+      </h3>
       <ListDirectory supabase_session={session.session} />
     </div>
   );
