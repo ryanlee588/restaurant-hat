@@ -5,7 +5,7 @@ test("Viewing existing list should be redirected to list page", async () => {
   await page.getByTitle("signInButton").click();
   await page.getByTitle("enter_list_name").fill("bia_hungry");
   await page.getByTitle("view_create_list_button").click();
-  await new Promise((f) => setTimeout(f, 3000));
+  await new Promise((f) => setTimeout(f, 5000));
   await expect(page.url()).toMatch(
     "https://restaurant-hat.vercel.app/list/bia_hungry"
   );
@@ -19,7 +19,7 @@ test("Owner should be able to delete list", async () => {
   await page.getByTitle("signInButton").click();
   await page.getByTitle("enter_list_name").fill("to_delete_123");
   await page.getByTitle("view_create_list_button").click();
-  await new Promise((f) => setTimeout(f, 3000));
+  await new Promise((f) => setTimeout(f, 5000));
   await page.goto("https://restaurant-hat.vercel.app/directory");
   await page.getByTitle("enter_list_name").fill("to_delete_123");
   await page.getByTitle("delete_list_button").click();
