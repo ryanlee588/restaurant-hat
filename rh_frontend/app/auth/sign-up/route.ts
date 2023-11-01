@@ -38,7 +38,7 @@ export async function POST(request: Request) {
     );
   } else {
     return NextResponse.redirect(
-      `${requestUrl.origin}?error=Sign up failed: Please enter a valid email. `,
+      `${requestUrl.origin}?error=Sign up failed: Please enter a valid email.`,
       {
         // a 301 status is required to redirect from a POST to a GET route
         status: 301,
