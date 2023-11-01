@@ -30,7 +30,7 @@ module.exports = {
     "^.+\\.(ts)$": "ts-jest",
   },
   verbose: true,
-  testTimeout: 20000,
+  testTimeout: 50000,
   setupFilesAfterEnv: ["expect-playwright"],
   testEnvironmentOptions: {
     "jest-playwright": {

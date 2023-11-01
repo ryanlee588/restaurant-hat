@@ -112,15 +112,15 @@ export default function InsertRestaurantButton({
   return (
     <div className="flex flex-col gap-4 items-center w-full md:w-1/2 lg:w-1/2">
       <input
+        title="restaurant_to_insert"
         type="text"
-        name="list_name"
-        id="list_name"
         placeholder="Restaurant to Insert"
         value={restaurant}
         onChange={handleInputChange}
         className="mt-1 block w-full px-4 py-2 text-center rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-black"
       />
       <Button
+        title="restaurant_insert_button"
         style={{ color: "white" }}
         type="submit"
         className="w-full text-sm md:text-base lg:text-large "
