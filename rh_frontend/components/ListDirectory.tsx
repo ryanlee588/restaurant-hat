@@ -46,9 +46,10 @@ export default function ListDirectory({ supabase_session }: ListDirectoryProp) {
   return (
     <div className="flex-1 w-full flex top-16 flex-col gap-4 items-center text-sm md:text-sm lg:text-md">
       <input
+        title="enter_list_name"
         type="text"
-        name="list_name"
-        id="list_name"
+        name="enter_list_name"
+        id="enter_list_name"
         placeholder="Enter Unique List Name"
         value={listName}
         onChange={handleInputChange}
@@ -56,6 +57,7 @@ export default function ListDirectory({ supabase_session }: ListDirectoryProp) {
       />
 
       <Button
+        title="view_create_list_button"
         className="w-full md:w-1/2 lg:w-1/2 text-sm md:text-sm lg:text-md"
         onClick={() => {
           listName != ""
@@ -69,6 +71,7 @@ export default function ListDirectory({ supabase_session }: ListDirectoryProp) {
         View List (Creates list if it doesn't exist)
       </Button>
       <Button
+        title="delete_list_button"
         variant="destructive"
         className="w-full md:w-1/2 lg:w-1/2 text-sm md:text-base lg:text-large"
         onClick={() => {
