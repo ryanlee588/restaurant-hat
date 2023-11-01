@@ -63,14 +63,14 @@ export default async function Login() {
           required
         />
         <Button
-          name="Sign In Button"
+          title="signInButton"
           style={{ color: "white" }}
           className="w-full text-sm md:text-base lg:text-large"
         >
           Sign In
         </Button>
         <Button
-          name="Sign Up Button"
+          title="signUpButton"
           style={{ color: "white" }}
           formAction="/auth/sign-up"
           className="w-full text-sm md:text-base lg:text-large"
