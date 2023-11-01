@@ -24,7 +24,7 @@ export default async function Login() {
         ></Image>
         Welcome to Restaurant Hat! 🎩
       </h2>
-      <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+      <h3 className="scroll-m-20 text-2xl font-semibold text-center tracking-tight">
         If you and your friends can't pick where to eat , try this
       </h3>
       <h4 className="scroll-m-20 w-full md:w-1/2 lg:w-1/2 text-center text-l font-semibold tracking-tight">
