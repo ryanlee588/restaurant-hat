@@ -1,4 +1,4 @@
-import { CONNECT_OPTIONS } from "./src/utils/connectOptions";
+import { CONNECT_OPTIONS } from "./src/utils/connectoptions";
 import { CUSTOM_DEVICE_OPTIONS } from "./src/utils/customDevice";
 import { parseCliParmas } from "./src/utils/cli";
 const params = parseCliParmas(process.argv);
