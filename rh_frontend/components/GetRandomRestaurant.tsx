@@ -59,6 +59,7 @@ export default function GetRandomRestaurant({ slug }: GetRandomRestaurantProp) {
       <AlertDialog>
         <AlertDialogTrigger asChild>
           <Button
+            title="get_random_restaurant_button"
             className="w-full text-sm md:text-base lg:text-large "
             onClick={() =>
               get_random_restaurant(slug).then((pick) =>
