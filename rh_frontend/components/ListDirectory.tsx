@@ -58,6 +58,7 @@ export default function ListDirectory({ supabase_session }: ListDirectoryProp) {
 
       <Button
         title="view_create_list_button"
+        name="view_create_list_button"
         className="w-full md:w-1/2 lg:w-1/2 text-sm md:text-sm lg:text-md"
         onClick={() => {
           listName != ""
