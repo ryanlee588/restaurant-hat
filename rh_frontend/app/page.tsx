@@ -39,6 +39,7 @@ export default async function Login() {
           Email
         </label>
         <input
+          title="email"
           style={{ color: "white" }}
           className="w-fullrounded-md px-4 py-2 bg-inherit border mb-6"
           name="email"
@@ -53,6 +54,7 @@ export default async function Login() {
           Password
         </label>
         <input
+          title="password"
           style={{ color: "white" }}
           className="w-fullrounded-md px-4 py-2 bg-inherit border mb-6"
           type="password"
