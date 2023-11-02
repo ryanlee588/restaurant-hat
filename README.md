@@ -122,7 +122,7 @@ The following sections lay out the functionalities of each page.
 
 # Testing
 
-Jest and Playwright was used to do end-to-end testing for the web app. Documentation of Jest and Playwright can be found [here](https://playwright.dev/docs/intro).
+Jest and Playwright was used to do end-to-end testing for this web app. Documentation of Jest and Playwright can be found [here](https://playwright.dev/docs/intro).
 
 Tests can be found in ./rh_frontend/src/test
 
