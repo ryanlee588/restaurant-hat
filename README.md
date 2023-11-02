@@ -119,3 +119,85 @@ The following sections lay out the functionalities of each page.
     - `get_rand_restaurant`: Gets a random restaurant if the user requesting it is the owner, and closes list.
       - Input: list_name (text), user_email (text)
       - Output: text
+
+# Testing
+
+Jest and Playwright was used to do end-to-end testing for the web app. Documentation of Jest and Playwright can be found [here](https://playwright.dev/docs/intro).
+
+Tests can be found in ./rh_frontend/src/test
+
+The implementation of tests prioritised testing the requirements. With that said, additional tests were implemented as well to ensure greater test coverage.
+
+The following tests have been implemented:
+
+## Basic (`basic.test.ts`)
+
+### Page is reachable
+
+Tests that the deployed page is reachable.
+
+## Login Page (`login.test.ts`)
+
+### Email is validated during sign up
+
+Tests that basic validation is done for email.
+
+### Sign in ensures user is signed up
+
+Tests that only authenticated users can sign in.
+
+### Sign in ensures password is correct
+
+Tests that only authenticated users can sign in.
+
+### Sign in and redirect works for registered user
+
+Tests that after sucessful sign it, user will be redirected to list directory page.
+
+### Sign in can happen after failed sign in
+
+Tests that sign in can be done after failing to sign in.
+
+### Authenticated user should be redirected to directory when accessing landing page
+
+Tests that users who are authenticated will be redirected when accessing login page.
+
+### Non authenticated user cannot access directory or list page
+
+Tests that users who are not authenticated will be redirected to login page when trying to access list directory or any list page.
+
+## List Directory Page (`directory.test.ts`)
+
+### Viewing existing list should be redirected to list page
+
+Tests that owners should be able to view list and are redirected to list page when trying to view a list. (Test might fail occasionally due to lag in redirect)
+
+### Non owner should be able to view list (_Secondary Requirement 2_)
+
+Tests that non owners should be able to view list and are redirected to list page when trying to view a list. (Test might fail occasionally due to lag in redirect)
+
+### Owner should be able to delete list (_Secondary Requirement 2_)
+
+Tests that owners should be able to delete lists. (Test might fail occasionally due to lag in creation of list)
+
+## List Page (`list.test.ts`)
+
+### Owner should be able to get a random restaurant (_Primary requirement 2/ Secondary Requirement 1_)
+
+Owners of a list should be able to get a random restaurant from that list.
+
+### Non Owner should not be able to get a random restaurant (_Secondary requirement 2/ Secondary Requirement 1_)
+
+Non Owners of list should not be able to get a random restaurant from that list.
+
+### Should not be able to add restaurant to a closed list (_Secondary requirement 4_)
+
+Once a list has been closed from getting a random restaurant, users should not be able to add any more restaurants.
+
+### Should be able to add restaurant to an open list (_Primary requirement 1_)
+
+Owner should be able to add restaurants to an open list.
+
+### Non owner Should be able to add restaurant to an open list (_Primary requirement 3_)
+
+Non owners should be able to add restaurants to an open list
