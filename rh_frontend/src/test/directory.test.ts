@@ -41,4 +41,5 @@ test("Owner should be able to delete list", async () => {
     'li[role="status"][aria-live="off"][aria-atomic="true"][tabindex="0"][data-state="open"][data-swipe-direction="right"].border.bg-background.text-foreground',
     "Successfully deleted list to_delete_123!"
   );
+  // Might fail occasionally due to time to redirect and therefore create list
 });
