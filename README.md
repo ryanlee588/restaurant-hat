@@ -126,7 +126,7 @@ Jest and Playwright was used to do end-to-end testing for the web app. Documenta
 
 Tests can be found in ./rh_frontend/src/test
 
-The implementation of tests prioritised testing the requirements. With that said, additional tests were implemented as well to ensure greater test coverage.
+The implementation of tests prioritised testing the requirements. With that said, additional tests were implemented as well to ensure greater test coverage. Tests that test for a requirement will have the requirement(s) tested for in paranthesis beside the test name.
 
 The following tests have been implemented:
 
