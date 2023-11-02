@@ -12,6 +12,20 @@ test("Viewing existing list should be redirected to list page", async () => {
   // Might fail occasionally due to time to redirect
 });
 
+test("Non owner should be able to view list", async () => {
+  await page.goto("https://restaurant-hat.vercel.app");
+  await page.getByTitle("email").fill("test1@test.com");
+  await page.getByTitle("password").fill("password1");
+  await page.getByTitle("signInButton").click();
+  await page.getByTitle("enter_list_name").fill("bia_hungry");
+  await page.getByTitle("view_create_list_button").click();
+  await new Promise((f) => setTimeout(f, 5000));
+  await expect(page.url()).toMatch(
+    "https://restaurant-hat.vercel.app/list/bia_hungry"
+  );
+  // Might fail occasionally due to time to redirect
+});
+
 test("Owner should be able to delete list", async () => {
   await page.goto("https://restaurant-hat.vercel.app");
   await page.getByTitle("email").fill("test@test.com");
